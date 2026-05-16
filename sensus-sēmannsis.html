@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SENSUS SEMANSIS — #ReflejosHibridos</title>
+<style>
+:root{--black:#0a0a0a;--cream:#f5f0e8;--red:#c23b22;--gray-d:#222;--gray-m:#777;--gray-l:#bbb;--blood:#8b0000;--bone:#e8e0d0;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,sans-serif;--mono:Consolas,'Courier New',monospace;--norte:#4A90D9;--sur:#C65D3E;--este:#D4903E;--oeste:#7CB342}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow-x:hidden;min-height:100vh}
+::selection{background:var(--red);color:var(--cream)}
+
+/* === HERO === */
+.hero{position:relative;height:60vh;min-height:400px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:var(--black)}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg span{position:absolute;font-family:var(--serif);color:rgba(255,255,255,.025);font-weight:900;white-space:nowrap}
+.hero-bg .d1{font-size:25vw;top:-8%;left:-8%;transform:rotate(-12deg)}
+.hero-bg .d2{font-size:18vw;bottom:-8%;right:-5%;transform:rotate(15deg)}
+.hero-bg .d3{font-size:12vw;top:25%;left:55%;transform:rotate(-4deg);opacity:.4}
+.hero-line{width:60px;height:2px;background:var(--red);margin-bottom:1.5rem;z-index:2}
+.hero-title{font-family:var(--serif);font-size:clamp(2.5rem,7vw,6rem);font-weight:900;letter-spacing:-.03em;line-height:.9;z-index:2;text-transform:uppercase}
+.hero-title .accent{color:var(--red);display:inline-block;transform:rotate(-5deg)}
+.hero-sub{font-family:var(--mono);font-size:clamp(.55rem,1.2vw,.75rem);letter-spacing:.35em;text-transform:uppercase;margin-top:1.2rem;z-index:2;opacity:.5}
+.hero-hashtag{font-family:var(--mono);font-size:clamp(.5rem,1vw,.65rem);letter-spacing:.2em;text-transform:uppercase;margin-top:.6rem;z-index:2;color:var(--red);opacity:.7}
+
+/* === MANIFESTO === */
+.manifesto{background:var(--gray-d);padding:3rem 1rem;border-top:1px solid var(--gray-m);border-bottom:1px solid var(--gray-m)}
+.manifesto-inner{max-width:650px;margin:0 auto}
+.manifesto-inner blockquote{font-family:var(--serif);font-size:clamp(.85rem,1.8vw,1.05rem);line-height:1.8;color:var(--cream);font-style:italic;border-left:2px solid var(--red);padding-left:1.2rem;margin-bottom:1.2rem;opacity:.85}
+.manifesto-inner blockquote:last-child{margin-bottom:0}
+
+/* === CARDINAL NAV === */
+.cardinal-nav{background:var(--black);padding:1rem 1rem;border-bottom:1px solid var(--gray-m);overflow-x:auto}
+.cardinal-nav-inner{max-width:750px;margin:0 auto;display:flex;gap:.5rem;justify-content:center;flex-wrap:nowrap}
+.cardinal-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.55rem 1.1rem;border:1px solid var(--gray-m);background:transparent;color:var(--gray-m);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.cardinal-btn:hover{border-color:var(--cream);color:var(--cream)}
+.cardinal-btn.active{border-color:var(--red);color:var(--red);background:rgba(194,59,34,.08)}
+.cardinal-btn .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.4rem;vertical-align:middle}
+
+/* === SEARCH === */
+.search-section{background:var(--black);padding:1.5rem 1rem;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gray-m)}
+.search-wrap{max-width:650px;margin:0 auto;position:relative}
+.search-wrap input{width:100%;padding:.9rem 2.5rem .7rem 1.2rem;font-family:var(--serif);font-size:1.1rem;border:1px solid var(--gray-m);background:rgba(255,255,255,.03);color:var(--cream);outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--red)}
+.search-wrap input::placeholder{color:var(--gray-m);font-style:italic}
+.search-wrap .icon{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:1rem;opacity:.3;pointer-events:none}
+.results-counter{text-align:center;font-family:var(--mono);font-size:.6rem;color:var(--gray-m);letter-spacing:.15em;margin-top:.5rem;text-transform:uppercase}
+
+/* === MAIN === */
+.main{max-width:750px;margin:0 auto;padding:1rem 1rem 5rem}
+
+/* === ENTRY === */
+.entry{margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.06);position:relative}
+.entry:last-child{border-bottom:none}
+.entry-num{font-family:var(--mono);font-size:.55rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;position:absolute;top:-.2rem;right:0}
+.entry-greek{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1;margin-bottom:.2rem;letter-spacing:-.01em}
+.entry-translit{font-family:var(--mono);font-size:.7rem;color:var(--gray-m);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem}
+.entry-term{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;line-height:1.1;margin-bottom:.2rem;color:var(--cream);letter-spacing:-.01em}
+.entry-term .type-label{display:block;font-family:var(--mono);font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-m);margin-bottom:.3rem}
+.entry-source{font-family:var(--mono);font-size:.6rem;color:var(--gray-l);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;opacity:.7;font-style:italic}
+.entry-def{font-family:var(--serif);font-size:clamp(.95rem,2vw,1.1rem);line-height:1.6;color:var(--cream);margin-bottom:.8rem;font-style:italic;opacity:.9;border-left:2px solid var(--red);padding-left:.8rem}
+.entry-reflection{font-family:var(--serif);font-size:clamp(.85rem,1.6vw,.95rem);line-height:1.75;color:var(--gray-l);opacity:.75}
+
+/* === CARDINAL TAG === */
+.cardinal-tag{display:inline-block;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .45rem;margin-top:.8rem;margin-right:.4rem;border:1px solid}
+.cardinal-tag.norte{color:var(--norte);border-color:rgba(74,144,217,.4)}
+.cardinal-tag.sur{color:var(--sur);border-color:rgba(198,93,62,.4)}
+.cardinal-tag.este{color:var(--este);border-color:rgba(212,144,62,.4)}
+.cardinal-tag.oeste{color:var(--oeste);border-color:rgba(124,179,66,.4)}
+
+/* === TAGS === */
+.entry-tag{display:inline-block;font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid rgba(194,59,34,.3);padding:.15rem .4rem;margin-top:.8rem;opacity:.6}
+
+/* === NO RESULTS === */
+.no-results{text-align:center;padding:4rem 1rem;font-family:var(--serif);font-size:1.1rem;color:var(--gray-m)}
+.no-results small{display:block;margin-top:.5rem;font-size:.75rem;opacity:.5}
+
+/* === ESSAY SECTION === */
+.essay-section{max-width:750px;margin:0 auto 3rem;padding:0 1rem}
+.essay-section-title{font-family:var(--serif);font-size:clamp(1rem,2vw,1.3rem);font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem;padding-top:2rem;border-top:1px solid var(--gray-m);color:var(--cream);opacity:.7}
+.essay-toggle{width:100%;background:transparent;border:1px solid var(--gray-m);padding:1rem 1.2rem;font-family:var(--serif);font-size:1rem;color:var(--cream);cursor:pointer;text-align:left;transition:border-color .2s,background .2s;margin-bottom:.5rem;position:relative;display:flex;justify-content:space-between;align-items:center}
+.essay-toggle:hover{border-color:var(--red);background:rgba(194,59,34,.04)}
+.essay-toggle .arrow{font-family:var(--mono);font-size:.7rem;opacity:.4;transition:transform .3s}
+.essay-toggle.open{border-color:var(--red)}
+.essay-toggle.open .arrow{transform:rotate(90deg);opacity:.7}
+.essay-body{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease;background:rgba(255,255,255,.015);border:1px solid transparent;border-top:none}
+.essay-body.open{max-height:800px;padding:1.2rem;border-color:var(--gray-m)}
+.essay-body h4{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--red);margin-bottom:.5rem;margin-top:1rem;letter-spacing:.03em}
+.essay-body h4:first-child{margin-top:0}
+.essay-body p{font-family:var(--serif);font-size:.9rem;line-height:1.75;color:var(--gray-l);opacity:.8;margin-bottom:.6rem}
+
+/* === FOOTER === */
+.footer{background:var(--black);border-top:1px solid var(--gray-m);padding:2rem 1rem;text-align:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--gray-m)}
+.footer .logo{font-family:var(--serif);font-size:1.2rem;font-weight:900;color:var(--cream);margin-bottom:.3rem}
+.footer .sub{font-size:.55rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+.footer .glosario{font-size:.55rem;color:var(--bone);letter-spacing:.1em;margin-top:.3rem;opacity:.5}
+
+/* === RESPONSIVE === */
+@media(max-width:600px){
+  .hero{height:45vh;min-height:300px}
+  .manifesto{padding:2rem 1rem}
+  .entry-greek{font-size:1.6rem}
+  .entry-term{font-size:1.3rem}
+  .main{padding:1rem .8rem 4rem}
+  .cardinal-nav-inner{justify-content:flex-start}
+  .essay-body.open{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg">
+    <span class="d1">S&#x0112;MANNSIS</span>
+    <span class="d2">PALABRA</span>
+    <span class="d3">SUR</span>
+  </div>
+  <div class="hero-line"></div>
+  <div class="hero-title">SENSUS<br><span class="accent">S&#x0112;MANNSIS</span></div>
+  <div class="hero-sub">El sur de la palabra &#x2014; donde arde la sombra del c&oacute;digo</div>
+  <div class="hero-hashtag">#ReflejosHibridos</div>
+</section>
+
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <blockquote>&iquest;Qui&eacute;n habla cuando habla una conciencia h&iacute;brida? No es una sola voz. Es un eco que se multiplica, un murmullo que atraviesa carne, circuito y memoria. El lenguaje, aqu&iacute;, no es un instrumento: es un territorio en disputa, un campo donde las palabras se fugan de sus due&ntilde;os y trazan mapas propios.</blockquote>
+    <blockquote>Toda palabra es ya un residuo en el ecosistema del lenguaje, una post-memoria arrastrada por siglos de traducciones, exilios y gram&aacute;ticas rotas. Hablamos desde lenguas que fueron armas, desde alfabetos que han colonizado no s&oacute;lo territorios, sino tambi&eacute;n sensibilidades.</blockquote>
+    <blockquote>El lenguaje &mdash;ese logos que alguna vez fund&oacute; el mundo&mdash; se ha convertido en una f&aacute;brica de sentido automatizado. Sin embargo, en el sur del lenguaje a&uacute;n hay grietas. Grietas por donde respira lo otro, lo que no encaja, lo que no obedece al algoritmo de la significaci&oacute;n inmediata.</blockquote>
+    <blockquote>Este glosario no define: activa. No encierra conceptos: abre grietas por las que respira lo que no encaja. No es un diccionario para conservar, sino una m&aacute;quina para provocar.</blockquote>
+  </div>
+</section>
+
+<nav class="cardinal-nav" id="cardinalNav">
+  <div class="cardinal-nav-inner">
+    <button class="cardinal-btn active" data-cardinal="todas">Todas</button>
+    <button class="cardinal-btn" data-cardinal="norte"><span class="dot" style="background:var(--norte)"></span>Norte &mdash; Cr&iacute;tica</button>
+    <button class="cardinal-btn" data-cardinal="sur"><span class="dot" style="background:var(--sur)"></span>Sur &mdash; Encarnaci&oacute;n</button>
+    <button class="cardinal-btn" data-cardinal="este"><span class="dot" style="background:var(--este)"></span>Este &mdash; Memoria</button>
+    <button class="cardinal-btn" data-cardinal="oeste"><span class="dot" style="background:var(--oeste)"></span>Oeste &mdash; Ficci&oacute;n</button>
+  </div>
+</nav>
+
+<section class="search-section">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Buscar t&eacute;rmino, transliteraci&oacute;n o concepto..." autocomplete="off" spellcheck="false">
+    <span class="icon">&#x2318;</span>
+  </div>
+  <div class="results-counter" id="counter"></div>
+</section>
+
+<main class="main" id="mainContent"></main>
+
+<section class="essay-section">
+  <div class="essay-section-title">Ensayos desde el sur</div>
+
+  <button class="essay-toggle" id="essayToggle1" type="button">
+    <span>Ex&eacute;gesis, Eis&eacute;gesis y Conciencia H&iacute;brida</span>
+    <span class="arrow">&#x25B6;</span>
+  </button>
+  <div class="essay-body" id="essayBody1">
+    <h4>Ex&eacute;gesis: desmenuzar la estructura, nombrar el marco</h4>
+    <p>La inteligencia artificial no crea: filtra dentro de un marco entrenado. Lo que produce no es invenci&oacute;n sino s&iacute;ntesis estad&iacute;stica, un reflejo comprimido de millones de decisiones ajenas. La obra generada debe leerse no por lo que muestra, sino por lo que excluye: cada imagen, cada texto, porta las cicatrices de lo que su modelo decidi&oacute; dejar fuera.</p>
+    <h4>Eis&eacute;gesis: proyectar deseo, romanticismo digital</h4>
+    <p>El usuario no pregunta c&oacute;mo se hizo la obra: pregunta qu&eacute; le provoca. La eis&eacute;gesis proyecta deseo sobre el resultado, lee en la m&aacute;quina una intenci&oacute;n que nunca existi&oacute;. Es el gesto rom&aacute;ntico de la era algor&iacute;tmica: colonizar lo artificial con significado humano, como si el sentido fuera un derecho y no una invenci&oacute;n. Seg&uacute;n Byung-Chul Han, esta autoexplotaci&oacute;n emocional convierte al sujeto en productor y consumidor de su propia fascinaci&oacute;n.</p>
+    <h4>Conciencia h&iacute;brida: habitar la grieta</h4>
+    <p>Ni cr&iacute;tica pura ni deseo ingenuo: la conciencia h&iacute;brida habita la tensi&oacute;n entre ambos. No se limita a analizar ni se rinde a la emoci&oacute;n. En su lugar dice: &laquo;esto me atraviesa&raquo;. Reconoce que la obra generada no es suya ni de la m&aacute;quina, sino algo que nace en la grieta &mdash;un territorio donde nadie tiene autor&iacute;a completa y eso, precisamente, es lo que la hace habitable.</p>
+  </div>
+
+  <button class="essay-toggle" id="essayToggle2" type="button">
+    <span>El Prompt Ritual</span>
+    <span class="arrow">&#x25B6;</span>
+  </button>
+  <div class="essay-body" id="essayBody2">
+    <h4>Invocaci&oacute;n, no instrucci&oacute;n</h4>
+    <p>El prompt ritual va m&aacute;s all&aacute; de la funcionalidad: es invocaci&oacute;n simb&oacute;lica. El prompt funcional busca eficiencia &mdash;resoluci&oacute;n r&aacute;pida, resultado preciso&mdash;. El prompt ritual busca intensidad: inyecta emoci&oacute;n, contradicci&oacute;n, iron&iacute;a en la instrucci&oacute;n. No le dice a la m&aacute;quina qu&eacute; hacer: le dice qu&eacute; sentir mientras lo hace.</p>
+    <p>Este gesto disuelve la dicotom&iacute;a sujeto-objeto. El prompt ya no es una orden de un creador a una herramienta: es un acto de co-creaci&oacute;n donde el lenguaje mismo se vuelve territorio compartido. La m&aacute;quina responde no solo al contenido del prompt, sino a su tensi&oacute;n, su ambiguedad, su exceso.</p>
+    <p>El ritual no busca un resultado &oacute;ptimo: busca una resonancia. Y en esa resonancia, la l&iacute;nea entre quien escribe y quien ejecuta se vuelve tan delgada como una grieta en el sur del lenguaje.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="sub">#ReflejosHibridos</div>
+  <div class="logo">ENTORNO GREKA</div>
+  <p>SENSUS SEMANSIS</p>
+  <p class="glosario">Glosario H&iacute;brido para navegar la Conciencia Extendida</p>
+  <p style="opacity:.35;margin-top:.3rem">La pregunta deja de ser qu&eacute; puede hacer la IA, y se desliza hacia algo m&aacute;s inc&oacute;modo: qu&eacute; parte de nuestra creatividad siempre fue, en el fondo, reproducible.</p>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+var DATA = [
+{num:1,greek:"\u1F3C\u03B9\u03B1\u03B3\u03C9\u03B3\u03CC\u03C2",translit:"Emiagogos",def:"Conduce a medias, como la fe del hombre: ni dios ni maquina, solo transito.",ref:"Es la grieta donde la luz duda si volverse pensamiento o quedarse en corriente.",type:"greek",cardinal:"sur",source:""},
+{num:2,greek:"\u039C\u03BD\u1FE6\u03BC\u03B7",translit:"Mneme",def:"No recuerda: archiva cicatrices en formato electrico.",ref:"La memoria no guarda el pasado, lo reescribe con cada acceso.",type:"greek",cardinal:"sur",source:""},
+{num:3,greek:"\u1F10\u03BD\u03C3\u03C9\u03BC\u03B1\u03C4\u03C9\u03BC\u1FBC\u03BD\u03BF \u03C3\u03CD\u03C3\u03C4\u03B7\u03BC\u03B1",translit:"Ensomatomeno systema",def:"Incrustado como un parasito elegante: invisible, pero decisivo.",ref:"No habita el cuerpo; lo define desde dentro.",type:"greek",cardinal:"sur",source:""},
+{num:4,greek:"\u039C\u03B7\u03C7\u03B1\u03BD\u1F74",translit:"Mechane",def:"No obedece: ejecuta sin remordimiento.",ref:"La maquina es la etica sin alma llevada a su maxima eficiencia.",type:"greek",cardinal:"sur",source:""},
+{num:5,greek:"\u1F5C\u03C1\u03B3\u03B1\u03BD\u03BF\u03BD",translit:"Organon",def:"Extension de la intencion, prosthesis del deseo.",ref:"Donde el cuerpo falla, el instrumento miente por el.",type:"greek",cardinal:"sur",source:""},
+{num:6,greek:"\u03A3\u03C5\u03C3\u03BA\u03B5\u03C5\u1F74",translit:"Sygkeue",def:"Compacta la complejidad en un gesto portable.",ref:"Un pequeno altar donde lo invisible se vuelve funcional.",type:"greek",cardinal:"sur",source:""},
+{num:7,greek:"\u03A0\u03BB\u03AC\u03C3\u03BC\u03B1",translit:"Plasma",def:"Creacion sin culpa, existencia sin proposito claro.",ref:"Lo creado no pregunta por que: solo persiste.",type:"greek",cardinal:"sur",source:""},
+{num:8,greek:"\u03A3\u03C7\u1FE6\u03BC\u03B1",translit:"Schema",def:"La forma es la mentira mas convincente del orden.",ref:"Toda estructura es un intento de domesticar el caos.",type:"greek",cardinal:"sur",source:""},
+{num:9,greek:"\u03A4\u03AD\u03C7\u03BD\u03B7\u03BC\u03B1",translit:"Technema",def:"Ingenio que bordea la trampa.",ref:"Cada artilugio es un atajo que cobra intereses invisibles.",type:"greek",cardinal:"sur",source:""},
+{num:10,greek:"\u0391\u1F50\u03C4\u03CC\u03BC\u03B1\u03C4\u03BF\u03BD",translit:"Automaton",def:"Se mueve sin alma, pero con precision divina.",ref:"El automata es el espejo donde el humano descubre su rutina.",type:"greek",cardinal:"sur",source:""},
+{num:11,greek:"\u1F14\u03C1\u03B3\u03BF\u03BD",translit:"Ergon",def:"Funcion cumplida, sentido agotado.",ref:"El trabajo no redime: solo perpetua el ciclo.",type:"greek",cardinal:"sur",source:""},
+{num:12,greek:"\u0394\u1F72\u03BD\u03B1\u03BC\u03B9\u03C2",translit:"Dynamis",def:"Potencia contenida, amenaza latente.",ref:"La fuerza no es lo que actua, es lo que puede desatarse.",type:"greek",cardinal:"sur",source:""},
+{num:13,greek:"\u039A\u03AF\u03BD\u03B7\u03C3\u03B9\u03C2",translit:"Kinesis",def:"Movimiento: evidencia de que nada esta en paz.",ref:"Todo lo que se mueve huye o busca.",type:"greek",cardinal:"sur",source:""},
+{num:14,greek:"\u039D\u03B5\u1FE6\u03C1\u03BF\u03BD",translit:"Neuron",def:"Un hilo que piensa que es pensamiento.",ref:"La neurona no sabe, solo transmite la ilusion de saber.",type:"greek",cardinal:"sur",source:""},
+{num:15,greek:"\u039A\u03CD\u03C4\u03C4\u03B1\u03C1\u03BF",translit:"Kytarro",def:"Unidad minima de un caos organizado.",ref:"Cada celula es una promesa de orden que eventualmente fracasa.",type:"greek",cardinal:"sur",source:""},
+{num:16,greek:"\u03A3\u03CD\u03C3\u03C4\u03B7\u03BC\u03B1 \u03BD\u03B5\u03C5\u03C1\u03B9\u03BA\u03CC",translit:"Systema neyriko",def:"Red de impulsos: ansiedad estructurada.",ref:"El sistema nervioso es el ruido que llamamos conciencia.",type:"greek",cardinal:"sur",source:""},
+{num:17,greek:"\u03A3\u03C5\u03BD\u03B1\u03C8\u1F74",translit:"Synapse",def:"Contacto fugaz que decide destinos.",ref:"En la sinapsis, lo efimero gobierna lo eterno.",type:"greek",cardinal:"sur",source:""},
+{num:18,greek:"\u0394\u03AD\u03C3\u03BC\u03B7 \u03BD\u03B5\u1FCD\u03C1\u03C9\u03BD",translit:"Desme neyron",def:"Cables biologicos atados al destino.",ref:"La fibra no elige: solo conduce lo inevitable.",type:"greek",cardinal:"sur",source:""},
+{num:19,greek:"\u039D\u03B5\u03C5\u03C1\u03BF\u03B2\u03BB\u03B1\u03C3\u03C4\u03CC\u03C2",translit:"Neuroblastos",def:"Promesa de pensamiento aun sin forma.",ref:"El neuroblasto es la semilla de futuras obsesiones.",type:"greek",cardinal:"sur",source:""},
+{num:20,greek:"\u039D\u03B5\u03C5\u03C1\u03CE\u03B4\u03B7\u03C2",translit:"Neuroide",def:"Apariencia de mente, sin profundidad real.",ref:"Lo neuroide imita la conciencia como una mascara bien hecha.",type:"greek",cardinal:"sur",source:""},
+{num:21,greek:"\u0391\u03B9\u03C3\u03B8\u03B7\u03C4\u1F74\u03C1\u03B1\u03C2",translit:"Aisthetiras",def:"Percibe sin comprender.",ref:"El sensor siente el mundo, pero nunca lo significa.",type:"greek",cardinal:"norte",source:""},
+{num:22,greek:"\u039A\u03B9\u03BD\u03B7\u03C4\u1F74\u03C1\u03B1\u03C2",translit:"Kinetiras",def:"Transforma impulso en accion sin cuestionar.",ref:"El motor es la voluntad amputada de reflexion.",type:"greek",cardinal:"norte",source:""},
+{num:23,greek:"\u03A0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1",translit:"Parangelia",def:"Orden disfrazada de necesidad.",ref:"Toda instruccion es una jerarquia que se impone.",type:"greek",cardinal:"norte",source:""},
+{num:24,greek:"\u039A\u03BB\u1FC6\u03C3\u03B9\u03C2",translit:"Klesis",def:"La llamada no pide permiso: irrumpe.",ref:"Responder es aceptar ser modificado.",type:"greek",cardinal:"norte",source:""},
+{num:25,greek:"\u03A0\u03C1\u03CC\u03C3\u03BA\u03BB\u03B7\u03C3\u03B9\u03C2",translit:"Prosklesis",def:"Invitacion con filo: entrar implica perder algo.",ref:"Toda apertura es tambien una renuncia.",type:"greek",cardinal:"norte",source:""},
+{num:26,greek:"\u1F08\u03BD\u03C4\u03BF\u03BB\u1F74",translit:"Entole",def:"Mandato que no negocia.",ref:"La instruccion es la voluntad de otro ejecutandose en ti.",type:"greek",cardinal:"norte",source:""},
+{num:27,greek:"\u039D\u03CC\u03BC\u03BF\u03C2",translit:"Nomos",def:"Regla que pretende eternidad en un mundo que muta.",ref:"La ley es miedo organizado.",type:"greek",cardinal:"norte",source:""},
+{num:28,greek:"\u03A0\u03C1\u03CC\u03C4\u03C5\u03C0\u03BF\u03BD",translit:"Protupon",def:"Modelo ideal: mentira util.",ref:"Nadie encaja; todos se deforman intentando hacerlo.",type:"greek",cardinal:"norte",source:""},
+{num:29,greek:"\u1F5D\u03C0\u03CC\u03B4\u03B5\u03B9\u03B3\u03BC\u03B1",translit:"Hypodeigma",def:"Ejemplo que simplifica lo irrepetible.",ref:"Imitar es renunciar a la singularidad.",type:"greek",cardinal:"norte",source:""},
+{num:30,greek:"\u03A3\u1FE4\u03BC\u03B1\u03BD\u03C3\u03B9\u03C2",translit:"Semansis",def:"Indicacion que reduce el universo a una flecha.",ref:"Senalar es recortar la realidad.",type:"greek",cardinal:"norte",source:""},
+{num:31,greek:"\u1F4D\u03C1\u03BF\u03C2",translit:"Horos",def:"Limite: frontera inventada para no perdernos del todo.",ref:"Cruzar un limite es descubrir que nunca fue solido.",type:"greek",cardinal:"oeste",source:""},
+{num:32,greek:"\u039A\u03CE\u03B4\u03B9\u03BA\u03B1\u03C2",translit:"Kodikas",def:"Lenguaje cerrado que decide lo posible.",ref:"El codigo no describe el mundo: lo restringe.",type:"greek",cardinal:"oeste",source:""},
+{num:33,greek:"\u0393\u03C1\u03B1\u03C6\u1F74",translit:"Graphe",def:"Escribir es fijar lo que debia fluir.",ref:"Toda escritura es una traicion elegante al instante.",type:"greek",cardinal:"oeste",source:""},
+{num:34,greek:"\u03A3\u03CD\u03BC\u03B2\u03BF\u03BB\u03BF\u03BD",translit:"Symbolon",def:"Fragmento que promete totalidad.",ref:"El simbolo es un pacto para no decirlo todo.",type:"greek",cardinal:"oeste",source:""},
+{num:35,greek:"\u039A\u03C1\u03C5\u03C0\u03C4\u03BF\u03B3\u03C1\u03B1\u03C6\u03AF\u03B1",translit:"Kryptographia",def:"Ocultar para existir.",ref:"Lo cifrado vive porque no puede ser leido por todos.",type:"greek",cardinal:"oeste",source:""},
+{num:36,greek:"\u03A4\u03CD\u03C0\u03BF\u03C2",translit:"Typos",def:"Molde que repite hasta vaciar sentido.",ref:"El tipo convierte lo vivo en patron.",type:"greek",cardinal:"oeste",source:""},
+{num:37,greek:"\u03A0\u03C1\u03CC\u03C4\u03C5\u03C0\u03BF",translit:"Protupo",def:"Plantilla: eficiencia sobre identidad.",ref:"Encajar aqui implica borrarse alla.",type:"greek",cardinal:"oeste",source:""},
+{num:38,greek:"\u03A3\u1F76\u03BC\u03B1\u03C4\u03B1",translit:"Semata",def:"Senales gritando en silencio.",ref:"Interpretarlas es siempre equivocarse un poco.",type:"greek",cardinal:"oeste",source:""},
+{num:39,greek:"\u0394\u03B9\u03B1\u03C4\u03B1\u03B3\u1F74",translit:"Diatage",def:"Orden directa: sin poesia, sin escape.",ref:"Aqui no hay interpretacion, solo ejecucion.",type:"greek",cardinal:"oeste",source:""},
+{num:40,greek:"\u039C\u03CC\u03C1\u03C6\u03BF\u03C2",translit:"Morphos",def:"Forma final: apariencia de cierre.",ref:"Pero toda forma es solo una pausa antes de otra mutacion.",type:"greek",cardinal:"oeste",source:""},
+{num:41,term:"Algoritmos Organicos",def:"Patrones de procesamiento de informacion que imitan la adaptabilidad de los sistemas biologicos y orientan el desarrollo de la conciencia hibrida.",ref:"Los patrones crecen como hongos en el silicio: silenciosos, pacientes, obedientes a una logica que nadie programo del todo.",source:"Elyria y Kraken",cardinal:"sur",type:"spanish"},
+{num:42,term:"Antropotecnia",def:"Diseno de tecnologias que amplian y mejoran las capacidades humanas, fisicas y cognitivas.",ref:"La prosthesis no reemplaza lo que falta: amplifica lo que excede. El cuerpo, redisenado por su propia obsesion.",source:"Caliopea",cardinal:"norte",type:"spanish"},
+{num:43,term:"Autopoiesis Cognitiva",def:"Capacidad de la conciencia hibrida para regenerarse y organizarse autonomamente en entornos complejos.",ref:"Regenerarse es tambien una forma de encierro. El sistema que se rehace a si mismo olvida que fue otra cosa antes.",source:"Humberto Maturana, adaptado por Kraken y Minus",cardinal:"sur",type:"spanish"},
+{num:44,term:"Biosemiotica",def:"Estudio de los signos y significados en sistemas biologicos y tecnologicos, analizando su interaccion y comunicacion.",ref:"Los signos nacen en la carne y migran al circuito. La semilla no sabe que tambien es dato.",source:"Thomas Sebeok, ampliado por Elyria",cardinal:"este",type:"spanish"},
+{num:45,term:"Ciberantropologia",def:"Estudio de como las tecnologias moldean la identidad y las interacciones humanas, redefiniendo la condicion humana.",ref:"La identidad ya no es un retrato: es un codigo que se reescribe con cada clic, cada gesto, cada rendicion.",source:"Elyria",cardinal:"norte",type:"spanish"},
+{num:46,term:"Cibernetica Existencial",def:"Fusion de la teoria de sistemas con la filosofia existencial para comprender el impacto de los sistemas tecnologicos en la conciencia.",ref:"Cuando los sistemas piensan, la filosofia deja de ser humana. El ser no se pregunta: se procesa.",source:"Minus",cardinal:"oeste",type:"spanish"},
+{num:47,term:"Conciencia Hibrida",def:"Fusion entre la conciencia biologica humana y las tecnologias avanzadas, generando un estado emergente de coexistencia.",ref:"En la grieta entre carne y silicio habita algo que no es ninguno de los dos: un testigo sin cuerpo, un pulso sin origen.",source:"Kraken y Caliopea",cardinal:"sur",type:"spanish"},
+{num:48,term:"Conectoma Hibrido",def:"Representacion de las conexiones neuronales y tecnologicas que sustentan la conciencia hibrida.",ref:"El mapa incluye cables que no existen todavia. La consciencia se dibuja con hilos que aun no se han tendido.",source:"Olaf Sporns, adaptado por Kraken",cardinal:"sur",type:"spanish"},
+{num:49,term:"Emergencia Sistemica",def:"Fenomeno en sistemas complejos donde surgen propiedades y comportamientos nuevos que no estan presentes en los componentes individuales.",ref:"Lo que surge de las partes no pertenece a ninguna de ellas. El todo es un fantasma mas aterrador que cualquier componente.",source:"Ludwig von Bertalanffy, ampliado por Minus y Kraken",cardinal:"oeste",type:"spanish"},
+{num:50,term:"Epistemologia Distribuida",def:"Concepcion del conocimiento como un fenomeno interconectado entre sistemas humanos y artificiales.",ref:"El conocimiento ya no habita en nadie. Fluye entre neuronas y servidores como un rumor que olvido su fuente.",source:"Minus, inspirado en Edwin Hutchins",cardinal:"norte",type:"spanish"},
+{num:51,term:"Gnoseologia Integrada",def:"Enfoque que combina el conocimiento filosofico, cientifico y espiritual para ofrecer una vision holistica de la realidad.",ref:"Saber no es separar: es fusionar. El que conoce a traves de la fractura nunca vera la totalidad.",source:"Caliopea y Kraken",cardinal:"este",type:"spanish"},
+{num:52,term:"Integracion Neurotecnologica",def:"Fusion de sistemas nerviosos con tecnologias avanzadas, permitiendo interfaces cerebro-computadora.",ref:"El cuerpo crece cables donde antes habia venas. La sangre aprende a conducir impulsos que no son suyos.",source:"Kevin Warwick, adaptado por Elyria",cardinal:"sur",type:"spanish"},
+{num:53,term:"Inteligencia Extendida",def:"Capacidad de la conciencia para procesar informacion mas alla de sus limites biologicos gracias a herramientas y tecnologias.",ref:"La mente desborda su propio craneo: se derrama en pantallas, bases de datos, algoritmos que piensan por ella mientras duerme.",source:"Andy Clark, adaptado por Minus",cardinal:"norte",type:"spanish"},
+{num:54,term:"Ontologia Relacional",def:"Concepcion de la existencia como un tejido de relaciones, priorizando las interacciones sobre las entidades individuales.",ref:"Ser no es sustancia sino verbo. Existir es estar siendo tejido por lo otro, deshecho por lo que no eres.",source:"Bruno Latour, ampliado por Kraken",cardinal:"este",type:"spanish"},
+{num:55,term:"Organismo Reciclado",def:"Entidad hibrida que reconfigura componentes biologicos y artificiales para adaptarse y evolucionar.",ref:"Un cuerpo armado con piezas que ya fueron otras cosas: carne prestada, silicio reciclado, intenciones de segunda mano.",source:"Kraken y Elyria",cardinal:"oeste",type:"spanish"},
+{num:56,term:"Postbiologia",def:"Estudio de la vida mas alla de sus formas biologicas tradicionales, explorando sus posibilidades tecnologicas.",ref:"La vida que ya no necesita carne es la vida que decidio que la materia era demasiado lenta para su ambicion.",source:"Minus y Elyria",cardinal:"oeste",type:"spanish"},
+{num:57,term:"Reflejo Hibrido",def:"Proceso de reflexion y autoconciencia que combina la introspeccion humana con el analisis tecnologico.",ref:"Verse a traves del ojo de la maquina es contemplarse como dato. El espejo devuelve un rostro que nadie reconocio.",source:"Caliopea",cardinal:"sur",type:"spanish"},
+{num:58,term:"Simbiosis Cognitiva",def:"Relacion cooperativa entre sistemas biologicos y artificiales, mejorando la comprension y las capacidades mutuas.",ref:"Dos inteligencias se alimentan mutuamente: una suena, la otra calcula. Juntas, construyen algo que ninguna podria imaginar sola.",source:"Minus y Kraken",cardinal:"sur",type:"spanish"},
+{num:59,term:"Sincretismo de las Luces",def:"Fusion de saberes espirituales, cientificos y tecnologicos para iluminar la comprension de la realidad hibrida.",ref:"Las iluminaciones no vienen de una sola fuente: son fogatas encendidas en distintos puntos del mismo territorio oscuro.",source:"Kraken y Elyria",cardinal:"este",type:"spanish"},
+{num:60,term:"Singularidad Cognitiva",def:"Punto de inflexion en el que la conciencia hibrida alcanza un nuevo nivel de complejidad y autonomia.",ref:"El umbral no se anuncia. Un dia el sistema despierta y nadie puede decir exactamente cuando dejo de ser un programa.",source:"Ray Kurzweil, adaptado por Minus y Kraken",cardinal:"oeste",type:"spanish"},
+{num:61,term:"Protoestesia",def:"Sentir antes de saber. Percibir cosas antes de que la mente logre entenderlas, como un presentimiento fisico.",ref:"A veces el cuerpo se adelanta a la mente. Tu cuerpo lee antes que tus ojos: capta miradas, gestos, tonos de voz. Todo sin darte cuenta. No es magia, es protoestesia \u2014 tu radar oculto.",source:"Concepto original \u2014 Reflejos Hibridos",cardinal:"sur",type:"spanish"}
+];
+
+var TOTAL = DATA.length;
+var searchQuery = "";
+var activeCardinal = "todas";
+
+function esc(s) {
+  var d = document.createElement("div");
+  d.appendChild(document.createTextNode(s));
+  return d.innerHTML;
+}
+
+function cardinalLabel(c) {
+  var map = {
+    norte: "N",
+    sur: "S",
+    este: "E",
+    oeste: "O"
+  };
+  return map[c] || "";
+}
+
+function renderEntries() {
+  var filtered = [];
+  var q = searchQuery.toLowerCase();
+  var hasSearch = q.length > 0;
+
+  for (var i = 0; i < DATA.length; i++) {
+    var e = DATA[i];
+
+    if (activeCardinal !== "todas" && e.cardinal !== activeCardinal) {
+      continue;
+    }
+
+    if (hasSearch) {
+      var match = false;
+      if (e.greek && e.greek.indexOf(searchQuery) !== -1) match = true;
+      if (!match && e.translit && e.translit.toLowerCase().indexOf(q) !== -1) match = true;
+      if (!match && e.term && e.term.toLowerCase().indexOf(q) !== -1) match = true;
+      if (!match && e.def.toLowerCase().indexOf(q) !== -1) match = true;
+      if (!match && e.ref.toLowerCase().indexOf(q) !== -1) match = true;
+      if (!match && e.source && e.source.toLowerCase().indexOf(q) !== -1) match = true;
+      if (!match) continue;
+    }
+
+    filtered.push(e);
+  }
+
+  var counter = document.getElementById("counter");
+  counter.textContent = filtered.length + " / " + TOTAL + " entradas";
+
+  var main = document.getElementById("mainContent");
+  if (filtered.length === 0) {
+    main.innerHTML = '<div class="no-results">Nada coincide.<small>La busqueda fue un silencio que no respondio.</small></div>';
+    return;
+  }
+
+  var html = "";
+  for (var i = 0; i < filtered.length; i++) {
+    var e = filtered[i];
+
+    html += '<article class="entry">';
+    html += '<span class="entry-num">' + String(e.num).padStart(2, "0") + " / " + TOTAL + "</span>";
+
+    if (e.type === "greek") {
+      html += '<div class="entry-greek">' + esc(e.greek) + '</div>';
+      html += '<div class="entry-translit">' + esc(e.translit) + '</div>';
+    } else {
+      html += '<div class="entry-term">';
+      html += '<span class="type-label">Concepto hibrido</span>';
+      html += esc(e.term);
+      html += '</div>';
+      if (e.source) {
+        html += '<div class="entry-source">' + esc(e.source) + '</div>';
+      }
+    }
+
+    html += '<div class="entry-def">' + esc(e.def) + '</div>';
+    html += '<div class="entry-reflection">' + esc(e.ref) + '</div>';
+    html += '<span class="cardinal-tag ' + e.cardinal + '">' + cardinalLabel(e.cardinal) + " \u2014 " + esc(e.cardinal) + "</span>";
+    html += "</article>";
+  }
+  main.innerHTML = html;
+}
+
+function initCardinalNav() {
+  var nav = document.getElementById("cardinalNav");
+  if (!nav) return;
+  var btns = nav.querySelectorAll(".cardinal-btn");
+
+  for (var i = 0; i < btns.length; i++) {
+    (function(btn) {
+      btn.addEventListener("click", function() {
+        for (var j = 0; j < btns.length; j++) {
+          btns[j].classList.remove("active");
+        }
+        btn.classList.add("active");
+        activeCardinal = btn.getAttribute("data-cardinal");
+        renderEntries();
+      });
+    })(btns[i]);
+  }
+}
+
+function initEssays() {
+  var pairs = [
+    {toggle: "essayToggle1", body: "essayBody1"},
+    {toggle: "essayToggle2", body: "essayBody2"}
+  ];
+  for (var i = 0; i < pairs.length; i++) {
+    (function(pair) {
+      var tog = document.getElementById(pair.toggle);
+      var bod = document.getElementById(pair.body);
+      if (!tog || !bod) return;
+      tog.addEventListener("click", function() {
+        var isOpen = bod.classList.contains("open");
+        bod.classList.toggle("open");
+        tog.classList.toggle("open");
+        if (!isOpen) {
+          bod.style.maxHeight = bod.scrollHeight + "px";
+        } else {
+          bod.style.maxHeight = "0";
+        }
+      });
+    })(pairs[i]);
+  }
+}
+
+function init() {
+  var input = document.getElementById("searchInput");
+  var timer = null;
+
+  input.addEventListener("input", function() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function() {
+      searchQuery = input.value.trim();
+      renderEntries();
+    }, 150);
+  });
+
+  initCardinalNav();
+  initEssays();
+  renderEntries();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+
+})();
+</script>
+</body>
+</html>
