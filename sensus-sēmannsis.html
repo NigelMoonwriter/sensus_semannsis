@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SENSUS SEMANSIS — #ReflejosHibridos</title>
+<title>SENSUS SĒMANNSIS — #ReflejosHíbridos</title>
 <style>
 :root{--black:#0a0a0a;--cream:#f5f0e8;--red:#c23b22;--gray-d:#222;--gray-m:#777;--gray-l:#bbb;--blood:#8b0000;--bone:#e8e0d0;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,sans-serif;--mono:Consolas,'Courier New',monospace;--norte:#4A90D9;--sur:#C65D3E;--este:#D4903E;--oeste:#7CB342}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:16px;scroll-behavior:smooth}
 body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow-x:hidden;min-height:100vh}
 ::selection{background:var(--red);color:var(--cream)}
+.skip-link{position:absolute;left:1rem;top:-3rem;background:var(--cream);color:var(--black);padding:.75rem 1rem;z-index:1000;text-decoration:none;border:1px solid var(--red);font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.skip-link:focus{top:1rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* === HERO === */
 .hero{position:relative;height:60vh;min-height:400px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:var(--black)}
@@ -110,6 +113,8 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
 </head>
 <body>
 
+<a class="skip-link" href="#mainContent">Saltar al contenido principal</a>
+
 <section class="hero">
   <div class="hero-bg">
     <span class="d1">S&#x0112;MANNSIS</span>
@@ -119,7 +124,7 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
   <div class="hero-line"></div>
   <div class="hero-title">SENSUS<br><span class="accent">S&#x0112;MANNSIS</span></div>
   <div class="hero-sub">El sur de la palabra &#x2014; donde arde la sombra del c&oacute;digo</div>
-  <div class="hero-hashtag">#ReflejosHibridos</div>
+  <div class="hero-hashtag">#ReflejosHíbridos</div>
 </section>
 
 <section class="manifesto">
@@ -131,34 +136,35 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
   </div>
 </section>
 
-<nav class="cardinal-nav" id="cardinalNav">
+<nav class="cardinal-nav" id="cardinalNav" aria-label="Filtros por orientación conceptual">
   <div class="cardinal-nav-inner">
-    <button class="cardinal-btn active" data-cardinal="todas">Todas</button>
-    <button class="cardinal-btn" data-cardinal="norte"><span class="dot" style="background:var(--norte)"></span>Norte &mdash; Cr&iacute;tica</button>
-    <button class="cardinal-btn" data-cardinal="sur"><span class="dot" style="background:var(--sur)"></span>Sur &mdash; Encarnaci&oacute;n</button>
-    <button class="cardinal-btn" data-cardinal="este"><span class="dot" style="background:var(--este)"></span>Este &mdash; Memoria</button>
-    <button class="cardinal-btn" data-cardinal="oeste"><span class="dot" style="background:var(--oeste)"></span>Oeste &mdash; Ficci&oacute;n</button>
+    <button class="cardinal-btn active" type="button" data-cardinal="todas" aria-pressed="true">Todas</button>
+    <button class="cardinal-btn" type="button" data-cardinal="norte" aria-pressed="false"><span class="dot" style="background:var(--norte)"></span>Norte &mdash; Cr&iacute;tica</button>
+    <button class="cardinal-btn" type="button" data-cardinal="sur" aria-pressed="false"><span class="dot" style="background:var(--sur)"></span>Sur &mdash; Encarnaci&oacute;n</button>
+    <button class="cardinal-btn" type="button" data-cardinal="este" aria-pressed="false"><span class="dot" style="background:var(--este)"></span>Este &mdash; Memoria</button>
+    <button class="cardinal-btn" type="button" data-cardinal="oeste" aria-pressed="false"><span class="dot" style="background:var(--oeste)"></span>Oeste &mdash; Ficci&oacute;n</button>
   </div>
 </nav>
 
 <section class="search-section">
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="Buscar t&eacute;rmino, transliteraci&oacute;n o concepto..." autocomplete="off" spellcheck="false">
+    <label class="sr-only" for="searchInput">Buscar término, transliteración, definición o fuente</label>
+    <input type="text" id="searchInput" placeholder="Buscar t&eacute;rmino, transliteraci&oacute;n o concepto..." autocomplete="off" spellcheck="false" aria-label="Buscar término, transliteración, definición o fuente">
     <span class="icon">&#x2318;</span>
   </div>
-  <div class="results-counter" id="counter"></div>
+  <div class="results-counter" id="counter" aria-live="polite"></div>
 </section>
 
-<main class="main" id="mainContent"></main>
+<main class="main" id="mainContent" tabindex="-1"></main>
 
 <section class="essay-section">
   <div class="essay-section-title">Ensayos desde el sur</div>
 
-  <button class="essay-toggle" id="essayToggle1" type="button">
+  <button class="essay-toggle" id="essayToggle1" type="button" aria-expanded="false" aria-controls="essayBody1">
     <span>Ex&eacute;gesis, Eis&eacute;gesis y Conciencia H&iacute;brida</span>
     <span class="arrow">&#x25B6;</span>
   </button>
-  <div class="essay-body" id="essayBody1">
+  <div class="essay-body" id="essayBody1" hidden>
     <h4>Ex&eacute;gesis: desmenuzar la estructura, nombrar el marco</h4>
     <p>La inteligencia artificial no crea: filtra dentro de un marco entrenado. Lo que produce no es invenci&oacute;n sino s&iacute;ntesis estad&iacute;stica, un reflejo comprimido de millones de decisiones ajenas. La obra generada debe leerse no por lo que muestra, sino por lo que excluye: cada imagen, cada texto, porta las cicatrices de lo que su modelo decidi&oacute; dejar fuera.</p>
     <h4>Eis&eacute;gesis: proyectar deseo, romanticismo digital</h4>
@@ -167,11 +173,11 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
     <p>Ni cr&iacute;tica pura ni deseo ingenuo: la conciencia h&iacute;brida habita la tensi&oacute;n entre ambos. No se limita a analizar ni se rinde a la emoci&oacute;n. En su lugar dice: &laquo;esto me atraviesa&raquo;. Reconoce que la obra generada no es suya ni de la m&aacute;quina, sino algo que nace en la grieta &mdash;un territorio donde nadie tiene autor&iacute;a completa y eso, precisamente, es lo que la hace habitable.</p>
   </div>
 
-  <button class="essay-toggle" id="essayToggle2" type="button">
+  <button class="essay-toggle" id="essayToggle2" type="button" aria-expanded="false" aria-controls="essayBody2">
     <span>El Prompt Ritual</span>
     <span class="arrow">&#x25B6;</span>
   </button>
-  <div class="essay-body" id="essayBody2">
+  <div class="essay-body" id="essayBody2" hidden>
     <h4>Invocaci&oacute;n, no instrucci&oacute;n</h4>
     <p>El prompt ritual va m&aacute;s all&aacute; de la funcionalidad: es invocaci&oacute;n simb&oacute;lica. El prompt funcional busca eficiencia &mdash;resoluci&oacute;n r&aacute;pida, resultado preciso&mdash;. El prompt ritual busca intensidad: inyecta emoci&oacute;n, contradicci&oacute;n, iron&iacute;a en la instrucci&oacute;n. No le dice a la m&aacute;quina qu&eacute; hacer: le dice qu&eacute; sentir mientras lo hace.</p>
     <p>Este gesto disuelve la dicotom&iacute;a sujeto-objeto. El prompt ya no es una orden de un creador a una herramienta: es un acto de co-creaci&oacute;n donde el lenguaje mismo se vuelve territorio compartido. La m&aacute;quina responde no solo al contenido del prompt, sino a su tensi&oacute;n, su ambiguedad, su exceso.</p>
@@ -180,9 +186,9 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
 </section>
 
 <footer class="footer">
-  <div class="sub">#ReflejosHibridos</div>
+  <div class="sub">#ReflejosHíbridos</div>
   <div class="logo">ENTORNO GREKA</div>
-  <p>SENSUS SEMANSIS</p>
+  <p>SENSUS SĒMANNSIS</p>
   <p class="glosario">Glosario H&iacute;brido para navegar la Conciencia Extendida</p>
   <p style="opacity:.35;margin-top:.3rem">La pregunta deja de ser qu&eacute; puede hacer la IA, y se desliza hacia algo m&aacute;s inc&oacute;modo: qu&eacute; parte de nuestra creatividad siempre fue, en el fondo, reproducible.</p>
 </footer>
@@ -191,7 +197,7 @@ body{background:var(--black);color:var(--cream);font-family:var(--sans);overflow
 (function(){
 "use strict";
 
-var DATA = [
+  var ENTRIES = [
 {num:1,greek:"\u1F3C\u03B9\u03B1\u03B3\u03C9\u03B3\u03CC\u03C2",translit:"Emiagogos",def:"Conduce a medias, como la fe del hombre: ni dios ni maquina, solo transito.",ref:"Es la grieta donde la luz duda si volverse pensamiento o quedarse en corriente.",type:"greek",cardinal:"sur",source:""},
 {num:2,greek:"\u039C\u03BD\u1FE6\u03BC\u03B7",translit:"Mneme",def:"No recuerda: archiva cicatrices en formato electrico.",ref:"La memoria no guarda el pasado, lo reescribe con cada acceso.",type:"greek",cardinal:"sur",source:""},
 {num:3,greek:"\u1F10\u03BD\u03C3\u03C9\u03BC\u03B1\u03C4\u03C9\u03BC\u1FBC\u03BD\u03BF \u03C3\u03CD\u03C3\u03C4\u03B7\u03BC\u03B1",translit:"Ensomatomeno systema",def:"Incrustado como un parasito elegante: invisible, pero decisivo.",ref:"No habita el cuerpo; lo define desde dentro.",type:"greek",cardinal:"sur",source:""},
@@ -255,7 +261,7 @@ var DATA = [
 {num:61,term:"Protoestesia",def:"Sentir antes de saber. Percibir cosas antes de que la mente logre entenderlas, como un presentimiento fisico.",ref:"A veces el cuerpo se adelanta a la mente. Tu cuerpo lee antes que tus ojos: capta miradas, gestos, tonos de voz. Todo sin darte cuenta. No es magia, es protoestesia \u2014 tu radar oculto.",source:"Concepto original \u2014 Reflejos Hibridos",cardinal:"sur",type:"spanish"}
 ];
 
-var TOTAL = DATA.length;
+  var TOTAL = ENTRIES.length;
 var searchQuery = "";
 var activeCardinal = "todas";
 
@@ -280,8 +286,8 @@ function renderEntries() {
   var q = searchQuery.toLowerCase();
   var hasSearch = q.length > 0;
 
-  for (var i = 0; i < DATA.length; i++) {
-    var e = DATA[i];
+  for (var i = 0; i < ENTRIES.length; i++) {
+    var e = ENTRIES[i];
 
     if (activeCardinal !== "todas" && e.cardinal !== activeCardinal) {
       continue;
@@ -306,7 +312,7 @@ function renderEntries() {
 
   var main = document.getElementById("mainContent");
   if (filtered.length === 0) {
-    main.innerHTML = '<div class="no-results">Nada coincide.<small>La busqueda fue un silencio que no respondio.</small></div>';
+    main.innerHTML = '<div class="no-results">Nada coincide.<small>La búsqueda fue un silencio que no respondió.</small></div>';
     return;
   }
 
@@ -322,7 +328,7 @@ function renderEntries() {
       html += '<div class="entry-translit">' + esc(e.translit) + '</div>';
     } else {
       html += '<div class="entry-term">';
-      html += '<span class="type-label">Concepto hibrido</span>';
+       html += '<span class="type-label">Concepto híbrido</span>';
       html += esc(e.term);
       html += '</div>';
       if (e.source) {
@@ -348,8 +354,10 @@ function initCardinalNav() {
       btn.addEventListener("click", function() {
         for (var j = 0; j < btns.length; j++) {
           btns[j].classList.remove("active");
+          btns[j].setAttribute("aria-pressed", "false");
         }
         btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
         activeCardinal = btn.getAttribute("data-cardinal");
         renderEntries();
       });
@@ -371,6 +379,8 @@ function initEssays() {
         var isOpen = bod.classList.contains("open");
         bod.classList.toggle("open");
         tog.classList.toggle("open");
+        tog.setAttribute("aria-expanded", String(!isOpen));
+        bod.hidden = isOpen;
         if (!isOpen) {
           bod.style.maxHeight = bod.scrollHeight + "px";
         } else {
